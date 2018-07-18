@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-xs-12">
+      <img [src]="contact.imagePath" alt="{{ contact.name }}" class="img-responsive" style="max-height: 300px;">
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+      <h1>{{ contact.name }}</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+      <div class="btn-group" appDropdown>
+          <button type="button" class="btn btn-primary dropdown-toggle">
+    Manage Contacts <span class="caret"></span>
+  </button>
+          <ul class="dropdown-menu">
+
+              <li><a style="cursor:pointer" (click)="onEditContact()">Edit Contact</a></li>
+              <li><a style="cursor:pointer" (click)="onDeleteContact()">Delete Contact</a></li>
+          </ul>
+      </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-4">
+      <h4 class="text text-info">Number</h4> {{ contact.number }}
+
+      <h4 class="text text-info">E-mail</h4> {{ contact.email }}
+
+
+  </div>
+  <div class="col-xs-3">
+      <h4 class="text text-info">Nick Name</h4> {{ contact.nickname }}
+      <h4 class="text text-info">Gender</h4> {{ contact.gender }}
+
+  </div>
+
+  <div class="col-xs-5">
+
+      <h5 *ngFor="let address of contact.address let i= index; ">
+          <h5 class="text text-info">Address</h5> {{address.streetName}} / {{address.flatNum}}
+
+      </h5>
+
+  </div>
+
+</div>
+<hr>
+<div class="row ">
+  <div class="col-xs-12 ">
+
+  </div>
+</div>
