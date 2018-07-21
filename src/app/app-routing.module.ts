@@ -6,12 +6,15 @@ import { ContactEditComponent } from './contacts/contact-edit/contact-edit.compo
 import { NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import { LogoutComponent } from './logout/logout.component';
+import { AppComponent } from './app.component';
 
 
 
 const appRoutes: Routes = [
-  {path: '', component: LoginComponent},
-  {path: '', component: LogoutComponent},
+  {path: 'home', component: AppComponent},
+  {path: 'home', redirectTo: '/login', pathMatch: 'full'},
+  {path: 'login', component: LoginComponent},
+  {path: 'logout', component: LogoutComponent},
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'contacts', component: ContactsComponent, children: [
     {path: '', component: ContactStartComponent},

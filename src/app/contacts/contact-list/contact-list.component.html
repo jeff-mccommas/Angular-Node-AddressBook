@@ -1,14 +1,21 @@
-<div class="row">
-  <div class="col-xs-12">
-      <button class="btn btn-success" (click)="onNewContact()">New Contact</button>
-  </div>
-</div>
-<hr>
-<div class="row">
-  <div class="col-xs-12">
+<h1>text</h1>
 
-      <input class=>
-      <hr>
-      <!-- <app-contact-item *ngFor="let contactEl of contacts | search:'number,name':query let i = index" [contact]="contactEl" [index]="i"></app-contact-item> -->
-  </div>
-</div>
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>Shiba Inu</mat-card-title>
+    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <p>
+      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+      bred for hunting.
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card>

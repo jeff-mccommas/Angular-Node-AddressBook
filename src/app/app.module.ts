@@ -14,7 +14,7 @@ import { FilterPipe } from './filter.pipe';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
-import { MatToolbar, MatToolbarModule} from '@angular/material';
+import { MatToolbar, MatToolbarModule, MatCard, MatCardModule, MatIcon, MatIconModule, MatListModule, MatSidenavModule, MatButtonModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -37,8 +37,12 @@ import { MatToolbar, MatToolbarModule} from '@angular/material';
     BrowserModule,
     RouterModule,
   AppRoutingModule,
-  MatToolbarModule
-
+  MatToolbarModule,
+  MatButtonModule,
+  MatSidenavModule,
+  MatIconModule,
+  MatListModule,
+  MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
