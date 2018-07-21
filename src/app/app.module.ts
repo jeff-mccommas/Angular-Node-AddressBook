@@ -26,6 +26,10 @@ import { MatToolbar,
   MatMenu,
   MatButton,
   MatMenuModule,
+  MatFormFieldModule,
+  MatOptionModule,
+  MatInputModule,
+  MatSelectModule,
   } from '@angular/material';
 
 @NgModule({
@@ -57,7 +61,11 @@ import { MatToolbar,
   MatCardModule,
   MatMenuModule,
   MatButtonModule,
-  
+  MatFormFieldModule,
+  MatOptionModule,
+  MatInputModule,
+  MatSelectModule,
+
   RouterModule,
   BrowserAnimationsModule
   ],
