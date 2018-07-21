@@ -14,6 +14,7 @@ import { FilterPipe } from './filter.pipe';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
+import { MatToolbar, MatToolbarModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -28,13 +29,15 @@ import { LogoutComponent } from './logout/logout.component';
     FilterPipe,
     DropdownDirective,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+  
 
   ],
   imports: [
     BrowserModule,
     RouterModule,
-  AppRoutingModule
+  AppRoutingModule,
+  MatToolbarModule
 
   ],
   providers: [],
