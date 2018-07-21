@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import{AppRoutingModule} from'./app-routing.module'
 import { ContactsComponent } from './contacts/contacts.component';
@@ -14,7 +14,19 @@ import { FilterPipe } from './filter.pipe';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
-import { MatToolbar, MatToolbarModule, MatCard, MatCardModule, MatIcon, MatIconModule, MatListModule, MatSidenavModule, MatButtonModule} from '@angular/material';
+import { MatToolbar, 
+  MatToolbarModule, 
+  MatCard, MatCardModule, 
+  MatIcon, MatIconModule, MatListModule, 
+  MatSidenavModule,
+  MatSidenav,
+  MatSidenavContainer,
+  MatSidenavContent, 
+  MatButtonModule,
+  MatMenu,
+  MatButton,
+  MatMenuModule,
+  } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -34,8 +46,8 @@ import { MatToolbar, MatToolbarModule, MatCard, MatCardModule, MatIcon, MatIconM
 
   ],
   imports: [
-    BrowserModule,
-    RouterModule,
+  BrowserModule,
+  RouterModule,
   AppRoutingModule,
   MatToolbarModule,
   MatButtonModule,
@@ -43,6 +55,11 @@ import { MatToolbar, MatToolbarModule, MatCard, MatCardModule, MatIcon, MatIconM
   MatIconModule,
   MatListModule,
   MatCardModule,
+  MatMenuModule,
+  MatButtonModule,
+  
+  RouterModule,
+  BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

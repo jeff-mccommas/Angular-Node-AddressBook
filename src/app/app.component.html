@@ -1,7 +1,11 @@
 <mat-toolbar color="primary">
     <span>Address Book</span>
-  
-    <!-- This fills the remaining space of the current row -->
-    <span class="example-fill-remaining-space"></span>
-  
+    <span style="float: right">
+        <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>Item 1</button>
+  <button mat-menu-item>Item 2</button>
+</mat-menu>
+    </span>
+    
     
