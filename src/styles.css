@@ -1,1 +1,35 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~ngx-toastr/toastr.css';
+body{
+  margin: 0;
+}
+.fullwidth{
+    width:100%
+}
+.example-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .example-container > * {
+    width: 100%;
+  }
+  .account-container{
+    max-width: 340px;
+    text-align: center;
+    margin: auto;
+    margin-top: 10px;
+  }
+  .mat-form-field-infix{
+    margin-left: 4px;
+  }
+  .account-container .mat-card-title{
+    font-weight: bold;
+    font-size: 18px;
+  }
+  .validation-message{
+    font-size: 12px;
+    text-align: left;
+    padding: 2px;
+    color: red;
+  }

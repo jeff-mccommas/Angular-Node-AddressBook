@@ -18,15 +18,10 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  {
-    path: 'contacts', component: ContactsComponent, children: [
-      { path: '', component: ContactStartComponent },
-      { path: 'new', component: ContactEditComponent },
-      { path: ':id', component: ContactDetailComponent },
-      { path: ':id/edit', component: ContactEditComponent },
-
-    ]
-  },
+  {path: 'contacts',  component: ContactsComponent },
+  {path: 'contacts/:id', component: ContactDetailComponent},
+  {path: 'contactedit/:id', component: ContactEditComponent},
+  {path: 'contactadd', component: ContactEditComponent},
 ];
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes)],

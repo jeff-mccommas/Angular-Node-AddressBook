@@ -1,23 +1,43 @@
-<form class="form-signin">
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail" class="sr-only">Email address</label>
-    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Remember me
-      </label>
-    </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    <p class="mt-5 mb-3 label">Don't have an account create one now</p>
 
-    <button class="bbtn btn-lg btn-primary btn-block" [routerLink]="[ '/', 'register' ]" routerLinkActive="active">register</button>
+<div class="account-container">
+    <mat-card class="example-card">
+        <mat-card-header>
+            <mat-card-title>Login</mat-card-title>
+        </mat-card-header>
 
-    <!-- <div><button class="btn btn-lg btn-primary btn-block" type="submit">   register</button></div> -->
+          <div class="example-container">
+              <form novalidate
+              (ngSubmit)="login()"
+              [formGroup]="loginForm" #formDir="ngForm"
+              class="form-group">
+                    <mat-form-field class="justifier">
+                            <mat-icon matPrefix>email</mat-icon>
+                            <input matInput placeholder="Username" formControlName="username" text="text">
+                        </mat-form-field>
+                        <mat-form-field class="justifier">
+                                <mat-icon matPrefix>lock</mat-icon>
+                                <input matInput placeholder="Password" type="password" formControlName="password" text="password">
+                            </mat-form-field>
+                            <div *ngIf="password.invalid && (password.dirty || password.touched)"
+                            class="validation-message">
+                         
+                         <div *ngIf="password.hasError('required')">
+                           Password is required.
+                         </div>
+                         <div *ngIf="password.hasError('minlength')">
+                           Password must be at least 6 characters long.
+                         </div>
+                       
+                       </div>
+                                <button color="primary" type="submit"  [disabled]="!loginForm.valid" class="fullwidth" mat-raised-button> 
+                                       Login
+                                    </button>
+                                    <br />
+                                    <br />
+                                    <button mat-raised-button [routerLink]="[ '/', 'register' ]" class="fullwidth"> 
+                                        Need an account? Register here.
+                                    </button>
+                                    </form>
 
-
-
-    
-    <!-- <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>><a [routerLink]="[ '/', 'register' ]" routerLinkActive="active">register</a></div> -->
-  </form>
+              </div>
+            </mat-card></div> 

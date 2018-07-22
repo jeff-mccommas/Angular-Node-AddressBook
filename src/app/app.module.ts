@@ -1,5 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';import { NgModule } from '@angular/core';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { NgModule } from '@angular/core';
+import { ToastrModule } from 'ngx-toastr'
+import { ReactiveFormsModule} from "@angular/forms";
+import {HttpModule} from "@angular/http";
 import { AppComponent } from './app.component';
 import{AppRoutingModule} from'./app-routing.module'
 import { ContactsComponent } from './contacts/contacts.component';
@@ -14,10 +18,12 @@ import { FilterPipe } from './filter.pipe';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
+import {DataService} from "./shared/data.service";
 import { MatToolbar, 
   MatToolbarModule, 
   MatCard, MatCardModule, 
   MatIcon, MatIconModule, MatListModule, 
+  MatGridListModule,
   MatSidenavModule,
   MatSidenav,
   MatSidenavContainer,
@@ -41,8 +47,8 @@ import { RegisterComponent } from './register/register.component';
     SharedComponent,
     ContactDetailComponent,
     ContactEditComponent,
-    ContactListComponent,
-    ContactStartComponent,
+    // ContactListComponent,
+    // ContactStartComponent,
     FilterPipe,
     DropdownDirective,
     LoginComponent,
@@ -63,15 +69,18 @@ import { RegisterComponent } from './register/register.component';
   MatCardModule,
   MatMenuModule,
   MatButtonModule,
+  MatGridListModule,
   MatFormFieldModule,
   MatOptionModule,
   MatInputModule,
   MatSelectModule,
-
   RouterModule,
-  BrowserAnimationsModule
+  BrowserAnimationsModule,
+  ReactiveFormsModule,
+  HttpModule,
+  ToastrModule.forRoot(),
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

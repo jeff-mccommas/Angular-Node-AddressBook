@@ -1,3 +1,23 @@
-body{
-    /*update by jmccommas*/
+.mat-list-icon {
+    color: rgba(0, 0, 0, 0.54);
+  }
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+  .contact-avatar{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    position: absolute;
+  }
+  .contact-name{
+      padding-left: 50px !important;
+  }
+  .contact-item{
+      cursor: pointer;
+  }
+  .contact-item:hover {
+    background-color: #efebf7;
 }
