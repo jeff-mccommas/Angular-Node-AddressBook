@@ -1,15 +1,23 @@
-<h3>Welcome 
-  please Login</h3>
-<div class="example-container">
-    <mat-form-field>
-        <input matInput placeholder="userName">
-      </mat-form-field>
+<form class="form-signin">
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+    <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <p class="mt-5 mb-3 label">Don't have an account create one now</p>
+
+    <button class="bbtn btn-lg btn-primary btn-block" [routerLink]="[ '/', 'register' ]" routerLinkActive="active">register</button>
+
+    <!-- <div><button class="btn btn-lg btn-primary btn-block" type="submit">   register</button></div> -->
+
+
+
     
-      <mat-form-field>
-        <input type="password" placeholder="password">
-      </mat-form-field>
-    
-      <button type="submit" mat-button>submit</button>
-</div>
-    
-  
+    <!-- <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>><a [routerLink]="[ '/', 'register' ]" routerLinkActive="active">register</a></div> -->
+  </form>

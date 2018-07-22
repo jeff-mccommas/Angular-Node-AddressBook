@@ -1,8 +1,8 @@
-.example-container {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .example-container > * {
-    width: 100%;
-  }
+.form-signin{
+ max-width: 480px;
+ position: absolute;
+ left: 10%;
+ right: 10%;
+ top: 10%;
+ bottom: 0;
+}
