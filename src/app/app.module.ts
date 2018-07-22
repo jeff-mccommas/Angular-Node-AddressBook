@@ -31,6 +31,7 @@ import { MatToolbar,
   MatInputModule,
   MatSelectModule,
   } from '@angular/material';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { MatToolbar,
     DropdownDirective,
     LoginComponent,
     LogoutComponent,
+    RegisterComponent
   
 
   ],
