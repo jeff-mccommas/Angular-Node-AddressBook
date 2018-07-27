@@ -1,55 +1,42 @@
-Contact Details screen
-<!-- <div class="row">
-  <div class="col-xs-12">
-      <img [src]="contact.imagePath" alt="{{ contact.name }}" class="img-responsive" style="max-height: 300px;">
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-      <h1>{{ contact.name }}</h1>
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-      <div class="btn-group" appDropdown>
-          <button type="button" class="btn btn-primary dropdown-toggle">
-    Manage Contacts <span class="caret"></span>
-  </button>
-          <ul class="dropdown-menu">
-
-              <li><a style="cursor:pointer" (click)="onEditContact()">Edit Contact</a></li>
-              <li><a style="cursor:pointer" (click)="onDeleteContact()">Delete Contact</a></li>
-          </ul>
-      </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-4">
-      <h4 class="text text-info">Number</h4> {{ contact.number }}
-
-      <h4 class="text text-info">E-mail</h4> {{ contact.email }}
-
-
-  </div>
-  <div class="col-xs-3">
-      <h4 class="text text-info">Nick Name</h4> {{ contact.nickname }}
-      <h4 class="text text-info">Gender</h4> {{ contact.gender }}
-
-  </div>
-
-  <div class="col-xs-5">
-
-      <h5 *ngFor="let address of contact.address let i= index; ">
-          <h5 class="text text-info">Address</h5> {{address.streetName}} / {{address.flatNum}}
-
-      </h5>
-
-  </div>
-
-</div>
-<hr>
-<div class="row ">
-  <div class="col-xs-12 ">
-
-  </div>
-</div> -->
+  <div class="contactcard">
+<mat-card class="example-card" *ngIf="contactInfo">
+    <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+    <mat-card-content>
+        <div class="contacthead">
+            <div mat-card-avatar class="contactimg example-header-image"></div>
+            <mat-card-title>{{contactInfo.name}}</mat-card-title>
+        </div>
+        <!-- socialProfile -->
+        <br />
+        <!-- <a class="addbutton">+</a> -->
+        <mat-form-field *ngFor="let phone of contactInfo.phone" class="full readonly">
+                <mat-icon matPrefix>phone</mat-icon>
+            <input matInput placeholder="Mobile" [disabled]="true" value="{{phone}}">
+          </mat-form-field>
+          <br/>
+          <mat-form-field *ngFor="let email of contactInfo.email" class="full readonly">
+                <mat-icon matPrefix>email</mat-icon>
+            <input matInput placeholder="Email" [disabled]="true" value="{{email}}">
+          </mat-form-field>
+          <br/>
+          <mat-form-field class="full readonly">
+                <mat-icon matPrefix>location_city</mat-icon>
+            <textarea matInput placeholder="Address" [disabled]="true" value="{{contactInfo.address}}"></textarea>
+          </mat-form-field>
+          <mat-form-field class="full readonly">
+              <mat-icon matPrefix>date_range</mat-icon>
+              <input matInput [matDatepicker]="picker"  [disabled]="true"  [(ngModel)]="contactInfo.birthday" placeholder="Birthday">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          <mat-form-field class="full readonly">
+              <mat-icon matPrefix>link</mat-icon>
+          <input matInput placeholder="Social Profile"  [disabled]="true" value="{{contactInfo.socialProfile}}">
+        </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" [routerLink]="[ '/', 'contactedit', contactInfo._id ]" >EDIT</button>
+      <button mat-button (click)="deleteContact()">DELETE</button>
+    </mat-card-actions>
+  </mat-card>
+</div>  

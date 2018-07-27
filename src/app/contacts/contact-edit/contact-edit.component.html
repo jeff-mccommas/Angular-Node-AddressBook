@@ -1,89 +1,51 @@
-Contact Edit screen
-<!-- <div class="row">
-  <div class="col-xs-12">
-      <form>
-          <div class="row">
-              <div class="col-xs-12">
-                  <button type="submit" class="btn btn-success" [disabled]="!contactForm.valid">Save</button>
-                  <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
-              </div>
-          </div>
-          <div class="row">
-              <div class="col-xs-12">
-                  <div class="form-group">
-                      <label for="name">Name</label>
-                      <input type="text" id="name" formControlName="name" class="form-control">
-                  </div>
-              </div>
-          </div>
-          <div class="row">
-              <div class="col-xs-12">
-                  <div class="form-group">
-                      <label for="number">Number</label>
-                      <textarea type="text" id="number" class="form-control" formControlName="number" rows="2"></textarea>
-                  </div>
-              </div>
-          </div>
-          <div class="row">
-              <div class="col-xs-12">
-                  <div class="form-group">
-                      <label for="imagePath">Image URL</label>
-                      <input type="text" id="imagePath" formControlName="imagePath" class="form-control" #imagePath>
-                  </div>
-              </div>
-          </div>
-          <div class="row">
-              <div class="col-xs-12">
-                  <img [src]="imagePath.value" class="img-responsive">
-              </div>
-          </div>
-          <div class="row">
-              <div class="col-xs-12">
-                  <div class="form-group">
-                      <label for="name">E-mail</label>
-                      <input type="text" id="email" formControlName="email" class="form-control">
-                  </div>
-              </div>
-          </div>
-          <div class="row">
-              <div class="col-xs-12">
-                  <div class="form-group">
-                      <label for="nickname">Nick Name</label>
-                      <input type="text" id="nickname" formControlName="nickname" class="form-control">
-                  </div>
-              </div>
-          </div>
-          <div class="row">
-              <div class="col-xs-12">
-                  <div class="form-group">
-                      <label for="gender">Gnder</label>
-                      <input type="text" id="gender" formControlName="gender" class="form-control">
-                  </div>
-              </div>
-          </div>
-
-
-          <div class="row">
-              <div class="col-xs-12" formArrayName="addresss">
-                  <div class="row" *ngFor="let addressCtrl of contactForm.get('addresss').controls; let i = index" []="i" style="margin-top: 10px;">
-                      <div class="col-xs-8">
-                          <input type="text" class="form-control" formControlName="streetName">
-                      </div>
-                      <div class="col-xs-2">
-                          <input type="number" class="form-control" formControlName="flatNum">
-                      </div>
-                      <div class="col-xs-2">
-                          <button type="button" class="btn btn-danger" (click)="onDeleteAddress(i)">X</button>
-                      </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                      <div class="col-xs-12">
-                          <button type="button" class="btn btn-success" (click)="onAddAddress()">Add Addresses</button>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </form>
-  </div>
-</div> -->
+<div class="contactcard">
+        <mat-card class="example-card">
+            <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+            <mat-card-content>
+                <div class="contacthead">
+                    <div class="contactimg add">
+                        <div>Add Photo</div>
+                    </div>
+                    <mat-card-title *ngIf="contactInfo">{{contactInfo.name}}</mat-card-title>
+                </div>
+                <br />
+                <!-- <a class="addbutton">+</a> socialProfile-->
+                <mat-form-field class="full readonly">
+                        <mat-icon matPrefix>person</mat-icon>
+                    <input matInput placeholder="Name" [(ngModel)]="contactInfo.name">
+                  </mat-form-field>
+                  <br/>
+                <mat-form-field  *ngFor="let phone of contactInfo.phone;let i=index; trackBy:indexTracker" class="full readonly">
+                        <mat-icon matPrefix>phone</mat-icon>
+                    <input matInput placeholder="Mobile" [(ngModel)]="contactInfo.phone[i]">
+                  </mat-form-field>
+                  <button mat-button class="contactbutton" (click)="addPhone()" color="primary">Add Phone</button>
+                  <br/>
+                  <mat-form-field *ngFor="let email of contactInfo.email;let index = index;trackBy:indexTracker" class="full readonly">
+                        <mat-icon matPrefix>email</mat-icon>
+                    <input matInput placeholder="Email" [(ngModel)]="contactInfo.email[index]">
+                  </mat-form-field>
+                  <button mat-button class="contactbutton" (click)="addEmail()" color="primary">Add Email</button>
+                  <br/>
+                  <mat-form-field class="full readonly">
+                        <mat-icon matPrefix>location_city</mat-icon>
+                    <textarea matInput placeholder="Address" [(ngModel)]="contactInfo.address"></textarea>
+                  </mat-form-field>
+                  <br/>
+                  <mat-form-field class="full readonly">
+                        <mat-icon matPrefix>date_range</mat-icon>
+                        <input matInput [matDatepicker]="picker" [(ngModel)]="contactInfo.birthday" placeholder="Birthday">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+                      <br/>
+                      <mat-form-field class="full readonly">
+                            <mat-icon matPrefix>link</mat-icon>
+                        <input matInput placeholder="Social Profile" [(ngModel)]="contactInfo.socialProfile">
+                      </mat-form-field>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-raised-button  (click)="saveContact()" color="primary">Save</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>  

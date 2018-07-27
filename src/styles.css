@@ -33,3 +33,43 @@ body{
     padding: 2px;
     color: red;
   }
+  .example-card {
+    /* max-width: 400px; */
+  }
+  
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+  .full{
+    width: 100%;
+  }
+  .readonly{
+    /* pointer-events: none */
+  }
+  .contactimg{
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: inline-block
+  }
+  .contactimg.add{
+    background: gray;
+    margin-bottom: 5px;
+  }
+  .contactimg.add div{
+  margin-top: 11px;
+    color: #fff;
+  }
+  .contacthead{
+    text-align: center
+  }
+  .contactcard{
+    max-width: 410px;
+    margin: auto;
+    margin-top: 20px;
+  }
+  .contactbutton{
+    float: right;
+  }

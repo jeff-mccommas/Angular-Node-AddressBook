@@ -30,7 +30,10 @@ export class DataService {
   getcontactInfo(id:any) {
     return this._http.get('http://localhost:3000/api/contacts/' + id).map(res => res.json());
   }
-  addContact(id:any, contactData:any) {
+  deletecontactInfo(id:any) {
+    return this._http.delete('http://localhost:3000/api/contacts/' + id).map(res => res.json());
+  }
+  addContact(contactData:any) {
     return this._http.post('http://localhost:3000/api/contacts/', contactData, this.options).map(res => res.json());
   }
   updateContactDetail(id:any, contactInfo:any) {

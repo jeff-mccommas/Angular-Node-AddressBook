@@ -18,6 +18,11 @@ router
     .route('/contacts')
     .get(ctrlContact.contactGetAll)
     .post(ctrlContact.contactAddOne);
+router
+    .route('/contacts/:contactId')
+    .get(ctrlContact.contactGetOne)
+    .post(ctrlContact.contactUpdateOne)
+    .delete(ctrlContact.contactDeleteOne);
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {

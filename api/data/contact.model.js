@@ -9,6 +9,8 @@ var contactSchema = new mongoose.Schema({
     address: String,
     phone: [Number],
     email: [String],
+    birthday: String,
+    socialProfile: String,
     photoUrl: String
 });
 

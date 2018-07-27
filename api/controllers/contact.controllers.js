@@ -40,7 +40,6 @@ module.exports.contactGetAll = function (req, res) {
     Contact
         .find()
         .skip(offset)
-        .limit(count)
         .exec(function (err, contacts) {
             console.log(err);
             console.log(contacts);
@@ -103,10 +102,7 @@ var _splitArray = function (input) {
 module.exports.contactAddOne = function (req, res) {
     "use strict";
     console.log("POST new hotel");
-    var contactCreateObj = {
-        name: req.body.name,
-        description: req.body.description
-    };
+    var contactCreateObj = req.body;
     Contact
         .create(contactCreateObj, function (err, contact) {
             if (err) {
@@ -131,10 +127,18 @@ module.exports.contactUpdateOne = function (req, res) {
         _id: contactId
     }, {
         $set: {
-          photoUrl: req.body.photos
+            name: req.body.name,
+            address: req.body.address,
+            phone: req.body.phone,
+            email: req.body.email,
+            birthday: req.body.birthday,
+            socialProfile: req.body.socialProfile,
+            photoUrl: req.body.photoUrl,
         }
     }, function () {
-        console.log("Contact updatedImage");
+        res
+                    .status(200)
+                    .json(true);
     });
 };
 
