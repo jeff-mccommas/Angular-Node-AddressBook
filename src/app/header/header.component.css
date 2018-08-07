@@ -1,3 +1,12 @@
 .logo{
     margin-right: 10px;
 }
+.profilebuttons{
+    position: absolute;
+    right: 10px;
+    font-size: 14px;
+}
+.profilebuttons label{
+    padding: 10px;
+    cursor: pointer;
+}

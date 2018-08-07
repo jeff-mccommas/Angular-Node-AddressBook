@@ -15,6 +15,11 @@ router
     .route("/users/login")
     .post(ctrlUsers.login);
 router
+    .route('/users/:userid')
+    .post(ctrlUsers.userUpdate);
+router.route("/auth")
+    .get(ctrlUsers.authenticate);
+router
     .route('/contacts')
     .get(ctrlContact.contactGetAll)
     .post(ctrlContact.contactAddOne);
@@ -24,32 +29,6 @@ router
     .post(ctrlContact.contactUpdateOne)
     .delete(ctrlContact.contactDeleteOne);
 
-var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        "use strict";
-        cb(null, "./uploads/images");
-    },
-    filename: function (req, file, cb) {
-        "use strict";
-        cb(null, Date.now() + ".jpg");
-    }
-});
-//1) To save image to a sever
-//2) To link that image with hotel
-// we need hotelId and Filename
-//define the type of upload multer would be doing and pass in its destination, in our case, its a single file with the name photo
-var upload = multer({
-    storage: storage
-});
-
-router.post("/upload", upload.single("photo"), function (req, res) {
-    "use strict";
-    var path = req.file.path;
-    var referrer = req.header("Referer").split("/");
-    var hotelId = referrer[referrer.length - 1];
-    ctrlHotels.addHotelImage(hotelId, path);
-    return res.send(path);
-});
 /* GET home page. */
 
 module.exports = router;

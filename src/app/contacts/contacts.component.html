@@ -2,7 +2,10 @@
         <mat-list-item   >
                 <!-- <mat-icon mat-list-icon>Person</mat-icon> -->
                 <img class="contact-avatar" src="https://upload.wikimedia.org/wikipedia/en/thumb/1/17/Batman-BenAffleck.jpg/200px-Batman-BenAffleck.jpg">
-                <h4 mat-line class="contact-name">My number: +912 23 23929</h4>
+                <mat-form-field  class="full mynumber">
+                  <mat-icon matPrefix>phone</mat-icon>
+                  <input matInput (blur)="updateMyPhone()" [(ngModel)]="mynumber" placeholder="My Number">
+                </mat-form-field>
                 <button mat-fab [routerLink]="[ '/', 'contactadd']" >
                         <mat-icon aria-label="icon-button with a heart icon">add</mat-icon>
                 </button>

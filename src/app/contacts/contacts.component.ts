@@ -12,14 +12,30 @@ export interface Section {
 
 export class ContactsComponent implements OnInit {
   contacts = [];
+  mynumber;
   constructor(private dataService: DataService) { 
+    var userObj = JSON.parse(localStorage.getItem('user'));
+    this.mynumber = userObj.phone;
     this.dataService.getcontacts().subscribe(x => {
       this.contacts = x
     }, error => {
       console.log(error);
     });
   }
-
+  updateMyPhone() {
+    var userObj = JSON.parse(localStorage.getItem('user'));
+    var reqObj = {
+      phone: this.mynumber
+    };
+    if (this.mynumber) {
+        this.dataService.updateUser(userObj._id, reqObj).subscribe(x => {
+          userObj.phone = this.mynumber
+          localStorage.setItem("user", JSON.stringify(userObj));
+        }, error => {
+          console.log(error);
+        });
+    }
+  }
   ngOnInit() {
   }
 }

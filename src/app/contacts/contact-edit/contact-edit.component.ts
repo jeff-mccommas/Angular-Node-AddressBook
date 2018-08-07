@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {DataService} from "../../shared/data.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import { FileUploader } from 'ng2-file-upload';
 @Component({
   selector: 'app-contact-edit',
   templateUrl: './contact-edit.component.html',

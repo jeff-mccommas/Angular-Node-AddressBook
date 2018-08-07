@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {DataService} from "../shared/data.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import { ToastrService } from 'ngx-toastr';
+import {MatSnackBar} from '@angular/material';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   errorMsg: string;
   successMsg: string;
 
-  constructor(private dataService: DataService, private router: Router, private toastr: ToastrService) { }
+  constructor(private dataService: DataService, private router: Router, private toastr: ToastrService, public snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.loginForm = new FormGroup({
@@ -27,6 +28,11 @@ export class LoginComponent implements OnInit {
   get password() {
     return this.loginForm.get('password');
   }
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, null, {
+      duration: 2000,
+    });
+  }
   login = function () {
     let userinput = this;
     var user = {
@@ -37,15 +43,13 @@ export class LoginComponent implements OnInit {
     if (!userinput.username.value || !userinput.password.value) {
       this.toastr.error('Please provide a username and a password.');
     } else {
-
       this.dataService.loginUser(body).subscribe(x => {
-          this.toastr.success('Successful login');
+          this.openSnackBar('Successful login');
           if (x.token) {
             this.router.navigate(['/contacts']);
           }
         }, error => {
-          console.log(error);
-          this.toastr.error('Invalid username or password');
+          this.openSnackBar('Invalid username or password');
         });
     }
   }

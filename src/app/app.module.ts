@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { FileUploadModule } from 'ng2-file-upload';
 import { NgModule } from '@angular/core';
 import { ToastrModule } from 'ngx-toastr'
 import { FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -20,6 +21,7 @@ import { MatToolbar,
   MatIcon, MatIconModule, MatListModule, 
   MatGridListModule,
   MatSidenavModule,
+  MatSnackBarModule,
   MatNativeDateModule,
   MatSidenav,
   MatSidenavContainer,
@@ -52,12 +54,14 @@ import { RegisterComponent } from './register/register.component';
   imports: [
   BrowserModule,
   FormsModule,
+  FileUploadModule,
   RouterModule,
   AppRoutingModule,
   MatToolbarModule,
   MatNativeDateModule,
   MatButtonModule,
   MatSidenavModule,
+  MatSnackBarModule,
   MatIconModule,
   MatListModule,
   MatCardModule,

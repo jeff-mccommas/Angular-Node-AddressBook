@@ -56,22 +56,63 @@ module.exports.login = function (req, res) {
         }
     });
 };
+function getUser(req, res, next) {
+    "use strict";
+    User.findOne({
+        username: req.user
+    })
+        .exec(function (err, doc) {
+            var response = {};
+            if (err) {
+                console.log("Error finding contact");
+                response.status = 500;
+                response.data = err;
+            } else if (!doc) {
+                console.log("ContactId not found in database", id);
+                response.status = 404;
+                response.data = {
+                    "data": "User ID not found " + id
+                };
+            } else {
+                response.status = 200;
+                response.data = doc;
+            }
+            res.status(response.status)
+                .json(response);
+        });
+
+};
 
 module.exports.authenticate = function (req, res, next) {
     "use strict";
     var headerExists = req.headers.authorization;
     if (headerExists) {
         var token = req.headers.authorization.split(" ")[1]; //--> Authorization Bearer xxx
+
+        console.log(token);
         jwt.verify(token, "s3cr3t", function (error, decoded) {
             if (error) {
                 console.log(error);
                 res.status(401).json("Unauthorized");
             } else {
                 req.user = decoded.username;
-                next();
+                getUser(req, res, next);
             }
         });
     } else {
         res.status(403).json("No token provided");
     }
+};
+module.exports.userUpdate = function (req, res) {
+    var userid = req.params.userid;
+    User.update({
+        _id: userid
+    }, {
+        $set: {
+            phone: req.body.phone
+        }
+    }, function () {
+        res.status(200)
+                    .json(true);
+    });
 };

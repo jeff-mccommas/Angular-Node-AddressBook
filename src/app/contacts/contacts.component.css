@@ -21,3 +21,8 @@
   .contact-item:hover {
     background-color: #efebf7;
 }
+
+.mynumber{
+  margin-left: 50px;
+  top: 10px; 
+}

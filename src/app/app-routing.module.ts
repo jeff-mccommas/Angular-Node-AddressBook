@@ -14,7 +14,6 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'home', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
   {path: 'contacts',  component: ContactsComponent },
   {path: 'contacts/:id', component: ContactDetailComponent},
   {path: 'contactedit/:id', component: ContactEditComponent},

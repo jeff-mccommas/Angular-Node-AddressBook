@@ -1,4 +1,8 @@
 <mat-toolbar color="primary">
   <span class="logo">Address Book</span>
-  <button mat-button [routerLink]="[ '/', 'contacts']">Contacts</button>
+  <button mat-button *ngIf="userObj && userObj.name" [routerLink]="[ '/', 'contacts']">Home</button>
+  <div class="profilebuttons">
+  <label  *ngIf="userObj && userObj.name">Welcome, {{userObj.name}}</label>
+  <label  *ngIf="userObj && userObj.name" (click)="logout()">Logout</label>
+</div>
 </mat-toolbar>
