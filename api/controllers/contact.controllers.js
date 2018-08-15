@@ -1,57 +1,28 @@
 /*global console, require, module, express */
 var mongoose = require("mongoose");
 var Contact = mongoose.model("Contact");
-
+var xmlify = require("xmlify");
 module.exports.contactGetAll = function (req, res) {
     "use strict";
     console.log("GET the contacts");
-    console.log(req.query);
-
-    var offset = 0;
-    var count = 5;
-    var maxCount = 50;
-
-    if (req.query && req.query.offset) {
-        offset = parseInt(req.query.offset, 10);
-    }
-
-    if (req.query && req.query.count) {
-        count = parseInt(req.query.count, 10);
-    }
-
-    if (isNaN(offset) || isNaN(count)) {
-        res
-            .status(400)
-            .json({
-                "message": "If supplied in querystring, count and offset must both be numbers"
-            });
-        return;
-    }
-
-    if (count > maxCount) {
-        res
-            .status(400)
-            .json({
-                "message": "Count limit of " + maxCount + " exceeded"
-            });
-        return;
-    }
-
     Contact
         .find()
-        .skip(offset)
         .exec(function (err, contacts) {
-            console.log(err);
-            console.log(contacts);
             if (err) {
                 console.log("Error finding contacts");
                 res
                     .status(500)
                     .json(err);
             } else {
-                console.log("Found contacts", contacts.length);
-                res
-                    .json(contacts);
+                res.format({
+                    'application/json': function () {
+                        res.json(contacts);
+                    },
+                    'application/xml': function () {
+                        res.type('application/xml');
+                        res.send(xmlify(contacts));
+                    }
+                });
             }
         });
 
@@ -60,9 +31,7 @@ module.exports.contactGetAll = function (req, res) {
 module.exports.contactGetOne = function (req, res) {
     "use strict";
     var id = req.params.contactId;
-
     console.log("GET contactId", id);
-
     Contact
         .findById(id)
         .exec(function (err, doc) {
@@ -81,11 +50,16 @@ module.exports.contactGetOne = function (req, res) {
                     "message": "Contact ID not found " + id
                 };
             }
-            res
-                .status(response.status)
-                .json(response.message);
+            res.format({
+                'application/json': function () {
+                    res.json(response.message);
+                },
+                'application/xml': function () {
+                    res.type('application/xml');
+                    res.send(xmlify(response.message));
+                }
+            });
         });
-
 };
 
 var _splitArray = function (input) {
@@ -111,13 +85,17 @@ module.exports.contactAddOne = function (req, res) {
                     .status(400)
                     .json(err);
             } else {
-                console.log("Contact created!", contact);
-                res
-                    .status(201)
-                    .json(contact);
+                res.format({
+                    'application/json': function () {
+                        res.json(contact);
+                    },
+                    'application/xml': function () {
+                        res.type('application/xml');
+                        res.send(xmlify(contact));
+                    }
+                });
             }
         });
-
 };
 
 
@@ -126,32 +104,20 @@ module.exports.contactUpdateOne = function (req, res) {
     Contact.update({
         _id: contactId
     }, {
-        $set: {
-            name: req.body.name,
-            address: req.body.address,
-            phone: req.body.phone,
-            email: req.body.email,
-            birthday: req.body.birthday,
-            socialProfile: req.body.socialProfile,
-            photoUrl: req.body.photoUrl,
-        }
-    }, function () {
-        res
-                    .status(200)
-                    .json(true);
-    });
-};
-
-module.exports.addContactImage = function (contactId, url) {
-    Contact.update({
-        _id: contactId
-    }, {
-        $set: {
-          photoUrl: url
-        }
-    }, function (err, hotelUpdated) {
-        console.log("Contact maped with FileUploaded");
-    });
+            $set: {
+                name: req.body.name,
+                address: req.body.address,
+                phone: req.body.phone,
+                email: req.body.email,
+                birthday: req.body.birthday,
+                socialProfile: req.body.socialProfile,
+                photoUrl: req.body.photoUrl,
+            }
+        }, function () {
+            res
+                .status(200)
+                .json(true);
+        });
 };
 
 module.exports.contactDeleteOne = function (req, res) {

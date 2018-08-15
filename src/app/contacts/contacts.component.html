@@ -13,9 +13,7 @@
         <h3 mat-subheader>Contacts</h3>
         <mat-list-item  [routerLink]="[ '/', 'contacts', contact._id ]" class="contact-item" *ngFor="let contact of contacts">
           <!-- <mat-icon mat-list-icon>Person</mat-icon> -->
-          <img class="contact-avatar" src="https://material.angular.io/assets/img/examples/shiba1.jpg">
+          <img class="contact-avatar" src="http://cdn.onlinewebfonts.com/svg/img_383210.png">
           <h4 mat-line class="contact-name">{{contact.name}}</h4>
         </mat-list-item>
-
-  
       </mat-list>

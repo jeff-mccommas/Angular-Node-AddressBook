@@ -1,12 +1,9 @@
 <div class="contactcard">
         <mat-card class="example-card">
-            <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+            <!-- <img mat-card-image src="http://cdn.onlinewebfonts.com/svg/img_383210.png"> -->
             <mat-card-content>
                 <div class="contacthead">
-                    <div class="contactimg add">
-                        <div>Add Photo</div>
-                    </div>
-               
+                    <div mat-card-avatar class="contactimg example-header-image"></div>
                     <mat-card-title *ngIf="contactInfo">{{contactInfo.name}}</mat-card-title>
                 </div>
                 <br />

@@ -36,7 +36,7 @@ process.once("SIGUSR2", function () {
     });
 });
 // For app termination
-process.on("SIGINT", function() {
+process.on("SIGINT", function () {
     gracefulShutdown("App termination (SIGINT)", function () {
         process.exit(0);
     });

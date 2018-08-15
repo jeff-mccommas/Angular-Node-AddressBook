@@ -21,8 +21,15 @@ module.exports.register = function (req, res) {
             console.log(err);
             res.status(400).json(err);
         } else {
-            console.log("user created", user);
-            res.status(201).json(user);
+            res.format({
+                'application/json': function () {
+                    res.json(user);
+                },
+                'application/xml': function () {
+                    res.type('application/xml');
+                    res.send(xmlify(user));
+                }
+            });
         }
     });
 };
@@ -43,12 +50,21 @@ module.exports.login = function (req, res) {
                 var token = jwt.sign({
                     username: user.username
                 }, "s3cr3t", {
-                    expiresIn: 3600
-                });
-                res.status(200).json({
+                        expiresIn: 3600
+                    });
+                var response = {
                     success: true,
                     token: token,
                     username: user.username
+                };
+                res.format({
+                    'application/json': function () {
+                        res.json(response);
+                    },
+                    'application/xml': function () {
+                        res.type('application/xml');
+                        res.send(xmlify(response));
+                    }
                 });
             } else {
                 res.status(401).json("Unauthorized");
@@ -77,8 +93,15 @@ function getUser(req, res, next) {
                 response.status = 200;
                 response.data = doc;
             }
-            res.status(response.status)
-                .json(response);
+            res.format({
+                'application/json': function () {
+                    res.json(response);
+                },
+                'application/xml': function () {
+                    res.type('application/xml');
+                    res.send(xmlify(response));
+                }
+            });
         });
 
 };
@@ -108,11 +131,11 @@ module.exports.userUpdate = function (req, res) {
     User.update({
         _id: userid
     }, {
-        $set: {
-            phone: req.body.phone
-        }
-    }, function () {
-        res.status(200)
-                    .json(true);
-    });
+            $set: {
+                phone: req.body.phone
+            }
+        }, function () {
+            res.status(200)
+                .json(true);
+        });
 };

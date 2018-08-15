@@ -1,8 +1,6 @@
 /*global console, require, module, express */
 var express = require("express");
 var router = express.Router();
-var multer = require("multer");
-
 var ctrlUsers = require("../controllers/users.controllers.js");
 var ctrlContact = require("../controllers/contact.controllers.js");
 
@@ -10,12 +8,11 @@ var ctrlContact = require("../controllers/contact.controllers.js");
 router
     .route("/users/register")
     .post(ctrlUsers.register);
-
 router
     .route("/users/login")
     .post(ctrlUsers.login);
 router
-    .route('/users/:userid')
+    .route("/users/:userid")
     .post(ctrlUsers.userUpdate);
 router.route("/auth")
     .get(ctrlUsers.authenticate);

@@ -3,16 +3,10 @@
 require("./api/data/db.js");
 var express = require("express");
 var cors = require("cors");
-var multer = require('multer');
-var fs = require('fs');
 var app = express();
 var path = require("path");
 var bodyParser = require("body-parser");
-
 var routes = require("./api/routes");
-var DIR = './uploads/';
- 
-var upload = multer({dest: DIR});
 // Define the port to run on
 app.set("port", 3000);
 app.use(function (req, res, next) {
@@ -42,18 +36,6 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 app.use(bodyParser.json());
-app.use(multer({dest:'./uploads/'}).single('file'));
-  
-app.post('/upload', function (req, res) {
-    upload(req, res, function (err) {
-      if (err) {
-        return res.end(err.toString());
-      }
-   
-      res.end('File is uploaded');
-    });
-  });
-  
 // Add some routing
 app.use("/api", routes);
 // Listen for requests

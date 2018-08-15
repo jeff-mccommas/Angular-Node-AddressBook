@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {DataService} from "../shared/data.service";
+import { DataService } from "../shared/data.service";
 export interface Section {
   name: string;
   updated: Date;
@@ -13,9 +13,11 @@ export interface Section {
 export class ContactsComponent implements OnInit {
   contacts = [];
   mynumber;
-  constructor(private dataService: DataService) { 
+  constructor(private dataService: DataService) {
     var userObj = JSON.parse(localStorage.getItem('user'));
-    this.mynumber = userObj.phone;
+    if (userObj) {
+      this.mynumber = userObj.phone;
+    }
     this.dataService.getcontacts().subscribe(x => {
       this.contacts = x
     }, error => {
@@ -28,12 +30,12 @@ export class ContactsComponent implements OnInit {
       phone: this.mynumber
     };
     if (this.mynumber) {
-        this.dataService.updateUser(userObj._id, reqObj).subscribe(x => {
-          userObj.phone = this.mynumber
-          localStorage.setItem("user", JSON.stringify(userObj));
-        }, error => {
-          console.log(error);
-        });
+      this.dataService.updateUser(userObj._id, reqObj).subscribe(x => {
+        userObj.phone = this.mynumber
+        localStorage.setItem("user", JSON.stringify(userObj));
+      }, error => {
+        console.log(error);
+      });
     }
   }
   ngOnInit() {
