@@ -5,6 +5,7 @@ var ctrlUsers = require("../controllers/users.controllers.js");
 var ctrlContact = require("../controllers/contact.controllers.js");
 
 // Authentication
+//http://localhost:3000/api/users/register
 router
     .route("/users/register")
     .post(ctrlUsers.register);

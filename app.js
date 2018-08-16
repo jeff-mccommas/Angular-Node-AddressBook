@@ -37,9 +37,11 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 // Add some routing
+// Base will be till /api : http://localhost:3000/api/getUser
 app.use("/api", routes);
 // Listen for requests
 var server = app.listen(app.get("port"), function () {
     var port = server.address().port;
     console.log("Magic happens on port " + port);
 });
+
